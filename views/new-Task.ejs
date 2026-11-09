@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neue Aufgabe</title>
+    <link rel="stylesheet" href="/css/styles.css?v=6">
+</head>
+<body>
+    <main class="page page-form">
+        <a class="button button-secondary back-button" href="/">zurück</a>
+        <header class="page-header">
+            <div>
+                <h1>Neue Aufgabe</h1>
+            </div>
+        </header>
+        <form method="POST" action="/tasks" class="panel task-form">
+            <div class="field">
+                    <label for="title">Titel</label>
+                    <input type="text" name="title" id="title" placeholder="was möchtest du erledigen?" required>
+            </div>
+            <div class="field">
+                    <label for="description">Beschreibung</label>
+                    <textarea name="description" id="description" rows="5" placeholder="beschreib die aufgabe"></textarea>
+            </div>
+            <div class="field field-date">
+                    <label for="dueDate">Fälligkeitsdatum</label>
+                    <input type="date" name="dueDate" id="dueDate" min="<%= minDueDate %>" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="button button-primary">Speichern</button>
+                <a href="/" class="button button-secondary">Abbrechen</a>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
