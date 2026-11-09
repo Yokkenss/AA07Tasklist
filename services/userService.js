@@ -5,7 +5,7 @@ async function saveUser({ id, email, password, role = 'user' }, database = prism
   const data = {
     email: email.trim().toLowerCase(),
     password: await bcrypt.hash(password, 12),
-    role
+    role: role
   };
 
   if (id) {

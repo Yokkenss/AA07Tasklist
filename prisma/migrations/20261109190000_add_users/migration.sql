@@ -8,8 +8,7 @@ CREATE TABLE `User` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Der Admin wird vor den Fremdschlüsseln angelegt, damit v2-Aufgaben erhalten bleiben.
--- Der Hash gehört zu einem zufälligen Passwort. Der Seed setzt den Admin über den Service.
+
 INSERT INTO `User` (`email`, `password`, `role`)
 VALUES ('admin@tasklist.local', '$2b$12$LpqOc33p50g0SuaeLg9OkOhPTPYt9Nau7WH6kUJH0xo0vPmVSy/eK', 'admin');
 

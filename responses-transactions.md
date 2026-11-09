@@ -1,34 +1,17 @@
-# Beziehungen in der Tasklist
+# beziehungen in der tasklist
 
-## 1. Fremdschlüssel und Relationsfelder
+## 1. fremdschlüssel
 
-`creatorId` ist eine echte Spalte in der Tabelle `Task`. Sie enthält die ID des
-Erstellers. `creator` ist dagegen ein Relationsfeld von Prisma. Damit kann ich
-beim Laden einer Aufgabe auch die E-Mail ihres Erstellers abfragen. Auf der
-Benutzerseite beschreibt `createdTasks` die dazugehörige Aufgabenliste.
+eine aufgabe speichert die id ihres erstellers. diese id verweist auf einen benutzer und heißt fremdschlüssel. so kann ich zu einer aufgabe den passenden benutzer laden, zum beispiel seine e-mail-adresse. die datenbank verhindert dabei, dass eine aufgabe auf einen benutzer verweist, den es nicht gibt.
 
-## 2. Zwei Beziehungen zwischen denselben Tabellen
+## 2. zwei beziehungen
 
-Ein Benutzer kann eine Aufgabe erstellen und ein anderer kann sie bearbeiten.
-Beide Beziehungen verbinden `User` mit `Task`. Die Namen `CreatedTasks` und
-`AssignedTasks` machen für Prisma eindeutig, welche Felder zusammengehören.
-Ersteller und zugewiesener Benutzer bleiben dadurch unabhängig voneinander.
+eine aufgabe hat einen ersteller und kann einem anderen benutzer zugewiesen sein. dafür gibt es zwei beziehungen mit verschiedenen namen. so weiss prisma, welche verbindung gemeint ist. ein benutzer kann mehrere aufgaben erstellen und mehrere aufgaben zugewiesen bekommen. wenn ich die zuweisung ändere, bleibt der ersteller gleich.
 
-## 3. Optionale Beziehungen und Löschen
+## 3. optionale zuweisung
 
-`assigneeId Int?` und `assignee User?` erlauben eine Aufgabe ohne Zuweisung.
-Die Datenbank speichert dafür `NULL`. Wird ein zugewiesener Benutzer gelöscht,
-setzt `onDelete: SetNull` diese Zuweisung zurück. Der Ersteller ist Pflicht;
-`onDelete: Restrict` verhindert, dass sein Benutzer mit bestehenden Aufgaben
-gelöscht wird.
+eine neue aufgabe ist noch niemandem zugewiesen. die zuweisung darf deshalb leer sein und wird in der datenbank als null gespeichert. in prisma zeigt ein fragezeichen hinter dem typ, dass ein feld optional ist. später kann ich einen benutzer zuweisen oder die zuweisung wieder entfernen. der ersteller muss dagegen immer vorhanden sein.
 
-Quelle: [Prisma ORM v6 – Relations](https://docs.prisma.io/docs/orm/v6/prisma-schema/data-model/relations).
+## transaktion
 
-## Transaktion bei der Registrierung
-
-`$transaction` fasst Benutzer und Profilbild-Aufgabe zusammen. Erst wenn beide
-gespeichert sind, übernimmt die Datenbank die Änderungen. Schlägt eine der
-Operationen fehl, wird auch die andere rückgängig gemacht. Eine doppelte
-E-Mail-Adresse hinterlässt deshalb keine zusätzliche Aufgabe.
-
-Quelle: [Prisma ORM v6 – Transactions](https://docs.prisma.io/docs/orm/v6/prisma-client/queries/transactions).
+bei der registrierung werden der benutzer und seine profilbild-aufgabe in einer transaktion zusammen gespeichert. die aufgabe wird dem neuen benutzer zugewiesen und ist in zwei tagen fällig. erst wenn beide gespeichert wurden, werden die änderungen übernommen. wenn eine der beiden speicherungen fehlschlägt, wird beides rückgängig gemacht. so bleibt kein neuer benutzer ohne seine aufgabe zurück.
