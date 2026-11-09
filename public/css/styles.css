@@ -26,10 +26,10 @@ body {
     line-height: 1.6;
 }
 
-button, input, textarea { font: inherit; }
+button, input, textarea, select { font: inherit; }
 
 .page {
-    width: min(1180px, calc(100% - 64px));
+    width: min(1500px, calc(100% - 64px));
     margin: 68px auto;
 }
 
@@ -83,7 +83,7 @@ h3 { margin: 16px 0 8px; font-size: 20px; font-weight: 600; }
 .button-secondary { background: var(--secondary); color: #354657; }
 .button-secondary:hover { background: var(--secondary-hover); }
 
-:where(a, button, input, textarea, .table-scroll):focus-visible {
+:where(a, button, input, textarea, select, .table-scroll):focus-visible {
     outline: 3px solid #416f98;
     outline-offset: 3px;
 }
@@ -101,6 +101,12 @@ tbody tr:first-child td { border-top: 0; }
 .task-actions { display: flex; gap: 8px; }
 .task-actions form { margin: 0; }
 .task-actions .button { padding: 10px 13px; font-size: 13px; }
+.page-nav { display: flex; flex-wrap: wrap; gap: 10px; }
+.user-email { max-width: 240px; overflow-wrap: anywhere; }
+.inline-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 200px; margin: 0; }
+select { max-width: 230px; min-height: 44px; padding: 8px 10px; border: 1px solid #bcc9b5; border-radius: 8px; background: #fff; color: var(--text); }
+.form-error { margin: 0 0 24px; color: #963a30; }
+small { color: var(--muted); }
 
 .empty-state { padding: 56px 24px 64px; text-align: center; }
 .empty-state p { margin: 0 0 24px; color: var(--muted); }

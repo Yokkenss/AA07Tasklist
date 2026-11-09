@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neue Aufgabe</title>
-    <link rel="stylesheet" href="/css/styles.css?v=6">
+    <link rel="stylesheet" href="/css/styles.css?v=7">
 </head>
 <body>
     <main class="page page-form">
@@ -17,11 +17,11 @@
         <form method="POST" action="/tasks" class="panel task-form">
             <div class="field">
                     <label for="title">Titel</label>
-                    <input type="text" name="title" id="title" placeholder="was möchtest du erledigen?" required>
+                    <input type="text" name="title" id="title" maxlength="191" placeholder="was möchtest du erledigen?" required>
             </div>
             <div class="field">
                     <label for="description">Beschreibung</label>
-                    <textarea name="description" id="description" rows="5" placeholder="beschreib die aufgabe"></textarea>
+                    <textarea name="description" id="description" rows="5" maxlength="191" placeholder="beschreib die aufgabe"></textarea>
             </div>
             <div class="field field-date">
                     <label for="dueDate">Fälligkeitsdatum</label>

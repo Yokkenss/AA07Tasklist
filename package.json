@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "test": "node --test",
     "seed": "node prisma/seed.js"
   },
   "devDependencies": {

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benutzer</title>
+    <link rel="stylesheet" href="/css/styles.css?v=7">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <h1>Benutzer</h1>
+            <nav class="page-nav" aria-label="Navigation">
+                <a href="/" class="button button-secondary">Aufgaben</a>
+                <a href="/register" class="button button-primary">Registrieren</a>
+            </nav>
+        </header>
+        <section class="panel" aria-label="Benutzerübersicht">
+            <div class="table-scroll" role="region" aria-label="Benutzer" tabindex="0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">E-Mail-Adresse</th>
+                            <th scope="col">Profilbild</th>
+                            <th scope="col">Rolle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                        <tr>
+                            <td class="user-email"><%= user.email %></td>
+                            <td class="user-email"><%= user.profileImage || '—' %></td>
+                            <td>
+                                <form method="POST" action="/users/<%= user.id %>/role" class="inline-form">
+                                    <select name="role" aria-label="Rolle für <%= user.email %>">
+                                        <option value="user" <%= user.role === 'user' ? 'selected' : '' %>>user</option>
+                                        <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>admin</option>
+                                    </select>
+                                    <button type="submit" class="button button-primary">Speichern</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

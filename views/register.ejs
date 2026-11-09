@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrieren</title>
+    <link rel="stylesheet" href="/css/styles.css?v=7">
+</head>
+<body>
+    <main class="page page-form">
+        <a class="button button-secondary back-button" href="/">zurück</a>
+        <header class="page-header"><h1>Registrieren</h1></header>
+        <form method="POST" action="/register" class="panel task-form">
+            <% if (error) { %>
+            <p class="form-error" role="alert"><%= error %></p>
+            <% } %>
+            <div class="field">
+                <label for="email">E-Mail-Adresse</label>
+                <input type="email" id="email" name="email" value="<%= email %>" maxlength="191" autocomplete="email" required>
+            </div>
+            <div class="field">
+                <label for="password">Passwort</label>
+                <input type="password" id="password" name="password" minlength="8" maxlength="72" autocomplete="new-password" aria-describedby="password-hint" required>
+                <small id="password-hint">Mindestens 8 Zeichen.</small>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="button button-primary">Registrieren</button>
+                <a href="/" class="button button-secondary">Abbrechen</a>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
